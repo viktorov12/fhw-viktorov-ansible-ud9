@@ -1,0 +1,18 @@
+---
+- name: apache ansible playbook
+  hosts: fhw
+  become: yes
+ 
+  tasks:
+    - name: apache ultima version
+      apt: name=apache2 state=present
+    - name: apache ejecutandose
+      service: name=apache2 state=started
+    - name: copiar ansible-html
+      copy: src=/home/vagrant/ud9-playbooks/ansible.html dest=/var/www/html
+      notify: reiniciar_apache2
+
+  handlers:
+    - name: reiniciar_apache2
+      service: name=apache2 state=restarted
+...
