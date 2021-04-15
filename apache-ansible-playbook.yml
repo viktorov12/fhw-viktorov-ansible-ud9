@@ -1,0 +1,11 @@
+---
+- name: apache ansible playbook
+  hosts: fhw
+  become: yes
+ 
+  tasks:
+    - name: apache ultima version
+      apt: name=apache2 state=present
+    - name: apache ejecutandose
+      service: name=apache2 state=started
+...
